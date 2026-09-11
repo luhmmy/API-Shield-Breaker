@@ -1,0 +1,8 @@
+{
+  "name": "aegis-target",
+  "version": "1.0.0",
+  "description": "Deliberately vulnerable Aegis Group target API — APIShield Breaker CTF range",
+  "main": "server.js",
+  "scripts": { "start": "node server.js" },
+  "engines": { "node": ">=18" }
+}

@@ -1,0 +1,18 @@
+# runtime state (regenerated at run time — never commit)
+ctf-state.json
+**/ctf-state.json
+teams.json
+**/teams.json
+
+# logs
+*.log
+
+# node (this project has zero dependencies, but just in case)
+node_modules/
+npm-debug.log*
+
+# os / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

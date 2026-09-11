@@ -1,0 +1,12 @@
+{
+  "name": "apishield-breaker-ctf",
+  "version": "1.0.0",
+  "description": "Live CTF server for APIShield Breaker — API Shield Summit 1.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
