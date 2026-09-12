@@ -1,7 +1,7 @@
 # APIShield Breaker CTF — Caddy Reverse Proxy
 # Automatic HTTPS via Let's Encrypt / ZeroSSL
 
-{$DOMAIN_CONSOLE:ctf.apisecunigeria.com.ng} {
+{$DOMAIN_CONSOLE:ctf.apisecunigeria.com} {
     # Submission console & live admin scoreboard
     reverse_proxy console:3000 {
         # Ensure Server-Sent Events (SSE) stream (/events) is flushed immediately
@@ -9,7 +9,7 @@
     }
 }
 
-{$DOMAIN_TARGET:target.ctf.apisecunigeria.com.ng} {
+{$DOMAIN_TARGET:target.ctf.apisecunigeria.com} {
     # Deliberately vulnerable Aegis API target range
     reverse_proxy target:4000
 }

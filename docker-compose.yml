@@ -40,8 +40,8 @@ services:
       - "80:80"
       - "443:443"
     environment:
-      - DOMAIN_CONSOLE=${DOMAIN_CONSOLE:-ctf.apisecunigeria.com.ng}
-      - DOMAIN_TARGET=${DOMAIN_TARGET:-target.ctf.apisecunigeria.com.ng}
+      - DOMAIN_CONSOLE=${DOMAIN_CONSOLE:-ctf.apisecunigeria.com}
+      - DOMAIN_TARGET=${DOMAIN_TARGET:-target.ctf.apisecunigeria.com}
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
       - caddy_data:/data

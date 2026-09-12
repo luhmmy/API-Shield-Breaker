@@ -18,7 +18,7 @@ Deploy **APIShield Breaker CTF** on an Ubuntu/Debian VPS with automated Let's En
 
 ## 2. DNS Records Setup
 
-At your domain registrar / DNS manager (where `apisecunigeria.com.ng` is managed), create **two A records**:
+At your domain registrar / DNS manager (where `apisecunigeria.com` is managed), create **two A records**:
 
 | Type | Name / Host | Points to (Value) | Purpose |
 | :--- | :--- | :--- | :--- |
@@ -60,8 +60,8 @@ nano .env
 Make sure you set `ADMIN_KEY` to a secret known only to you (e.g. `summit-ikeja-secret-987`):
 ```env
 ADMIN_KEY=your-secure-admin-password
-DOMAIN_CONSOLE=ctf.apisecunigeria.com.ng
-DOMAIN_TARGET=target.ctf.apisecunigeria.com.ng
+DOMAIN_CONSOLE=ctf.apisecunigeria.com
+DOMAIN_TARGET=target.ctf.apisecunigeria.com
 JWT_SECRET=aegis
 ```
 
@@ -88,9 +88,9 @@ docker compose logs -f caddy
 
 | Purpose | URL | Audience |
 | :--- | :--- | :--- |
-| **Players Submit Page** | `https://ctf.apisecunigeria.com.ng/` | Put a QR code of this on the projector / slides. |
-| **Admin Board & Timer** | `https://ctf.apisecunigeria.com.ng/admin?key=<YOUR_ADMIN_KEY>` | **Host only** — open this on the projector screen. |
-| **Aegis Target Range** | `https://target.ctf.apisecunigeria.com.ng/` | Give this link to teams to hack. |
+| **Players Submit Page** | `https://ctf.apisecunigeria.com/` | Put a QR code of this on the projector / slides. |
+| **Admin Board & Timer** | `https://ctf.apisecunigeria.com/admin?key=<YOUR_ADMIN_KEY>` | **Host only** — open this on the projector screen. |
+| **Aegis Target Range** | `https://target.ctf.apisecunigeria.com/` | Give this link to teams to hack. |
 
 ---
 
@@ -98,10 +98,10 @@ docker compose logs -f caddy
 
 Before the summit begins, test the full loop end-to-end:
 
-1. Open `https://ctf.apisecunigeria.com.ng/admin?key=<YOUR_ADMIN_KEY>`. Set duration to 30 minutes and click **Start**.
-2. Visit `https://target.ctf.apisecunigeria.com.ng/api/docs`.
+1. Open `https://ctf.apisecunigeria.com/admin?key=<YOUR_ADMIN_KEY>`. Set duration to 30 minutes and click **Start**.
+2. Visit `https://target.ctf.apisecunigeria.com/api/docs`.
 3. Copy the F1 flag from the Swagger API description: `APISHIELD{sw4gger_left_the_door_open}`.
-4. In another browser / tab, visit `https://ctf.apisecunigeria.com.ng/`.
+4. In another browser / tab, visit `https://ctf.apisecunigeria.com/`.
 5. Join as a test team (e.g., `Test Team`), paste the flag, and submit.
 6. Look at your Admin projector screen: the capture, time-to-reveal, and First Blood badge should appear in real time over the live feed!
 7. On the Admin screen, click **Clear captures** and **Reset timer** to reset the board cleanly for the event.
