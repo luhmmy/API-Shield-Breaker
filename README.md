@@ -14,8 +14,9 @@ A 30-minute, 6-flag CTF covering the OWASP API Security Top 10 (2023). Two zero-
 ```
 
 ## Deploy
-- **Railway (recommended):** see **[RAILWAY.md](RAILWAY.md)** — push this repo, two services, done.
-- **Local / VPS:** see **[QUICKSTART.md](QUICKSTART.md)**.
+- **Docker VPS (with domain & auto-SSL):** see **[DEPLOY-VPS.md](DEPLOY-VPS.md)** — Docker Compose + Caddy setup for custom domain.
+- **Railway:** see **[RAILWAY.md](RAILWAY.md)** — push this repo, two services, done.
+- **Local / VPS (bare Node):** see **[QUICKSTART.md](QUICKSTART.md)**.
 
 ## Run locally (2 terminals, Node 18+)
 ```bash
@@ -26,6 +27,7 @@ cd apishield-live && ADMIN_KEY=changeme node server.js    # console → :3000, a
 ## Docs
 | File | What |
 |------|------|
+| `DEPLOY-VPS.md` | Docker Compose + Caddy VPS deployment with auto-HTTPS |
 | `RAILWAY.md` | Step-by-step Railway deploy |
 | `QUICKSTART.md` | Local run + one-box VPS deploy + dry run |
 | `SYSTEM-README.md` | How the two halves fit together |

@@ -1,0 +1,9 @@
+.git
+.gitignore
+.gemini
+.agents
+data/
+*.md
+.env
+.env.*
+!.env.example

@@ -1,0 +1,58 @@
+services:
+  # 1. CTF Submission Console & Admin Live Board
+  console:
+    build:
+      context: ./apishield-live
+      dockerfile: Dockerfile
+    container_name: apishield-console
+    restart: unless-stopped
+    environment:
+      - PORT=3000
+      - ADMIN_KEY=${ADMIN_KEY:-summit2026-secret}
+      - STATE_FILE=/app/data/ctf-state.json
+    volumes:
+      - ./data:/app/data
+    networks:
+      - ctf-net
+
+  # 2. Deliberately Vulnerable Aegis Group Target API
+  target:
+    build:
+      context: ./aegis-target
+      dockerfile: Dockerfile
+    container_name: aegis-target
+    restart: unless-stopped
+    environment:
+      - PORT=4000
+      - JWT_SECRET=${JWT_SECRET:-aegis}
+    networks:
+      - ctf-net
+
+  # 3. Caddy Reverse Proxy (Automatic HTTPS with Let's Encrypt)
+  caddy:
+    image: caddy:2-alpine
+    container_name: ctf-caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - DOMAIN_CONSOLE=${DOMAIN_CONSOLE:-ctf.apisecunigeria.com.ng}
+      - DOMAIN_TARGET=${DOMAIN_TARGET:-target.ctf.apisecunigeria.com.ng}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - console
+      - target
+    networks:
+      - ctf-net
+
+networks:
+  ctf-net:
+    driver: bridge
+
+volumes:
+  caddy_data:
+  caddy_config:

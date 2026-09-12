@@ -14,7 +14,7 @@ const crypto = require('crypto');
 
 const PORT = process.env.PORT || 3000;
 const ADMIN_KEY = process.env.ADMIN_KEY || ('shield-' + crypto.randomBytes(2).toString('hex'));
-const STATE_FILE = path.join(__dirname, 'ctf-state.json');
+const STATE_FILE = process.env.STATE_FILE || path.join(__dirname, 'ctf-state.json');
 
 /* ---------- FLAG CONFIG (edit here if the spec changes) ----------
    `body` is the text inside APISHIELD{...}. Per-team instances append a
@@ -54,7 +54,7 @@ function loadState(){
   return blankState();
 }
 let saveTimer=null;
-function saveState(){ clearTimeout(saveTimer); saveTimer=setTimeout(()=>{ try{ fs.writeFileSync(STATE_FILE, JSON.stringify(state)); }catch(e){} }, 120); }
+function saveState(){ clearTimeout(saveTimer); saveTimer=setTimeout(()=>{ try{ const dir=path.dirname(STATE_FILE); if(!fs.existsSync(dir)) fs.mkdirSync(dir,{recursive:true}); fs.writeFileSync(STATE_FILE, JSON.stringify(state)); }catch(e){} }, 120); }
 
 // In locked mode, ensure every configured team exists with its salt/code.
 if(LOCKED){
@@ -415,7 +415,7 @@ tr.trow{cursor:pointer}tr.trow:hover{background:#faf2f6}
 
  <div class="card answers"><div class="eyebrow">Organisers only</div><h2>Answer key & export</h2>
   <div class="keyprompt">
-   <div><label class="fld" for="akey">Admin key</label><input class="txt" id="akey" placeholder="paste admin key" style="width:220px"></div>
+   <div><label class="fld" for="akey">Admin key</label><input type="password" class="txt" id="akey" placeholder="paste admin key" style="width:220px"></div>
    <button class="btn ghost" onclick="loadKeys()">Show flags</button>
    <button class="btn ghost" onclick="dl('json')">Export JSON</button>
    <button class="btn ghost" onclick="dl('csv')">Export CSV</button>
